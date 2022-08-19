@@ -1,7 +1,7 @@
 lcc := $(LCC_BIN)
 
 game.gb: _build
-	$(lcc) main.c -o _build/game.gb
+	$(lcc) src/main.c -o _build/game.gb
 
 _build: clean
 	mkdir _build
