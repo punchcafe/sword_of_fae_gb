@@ -1,5 +1,5 @@
 lcc := $(LCC_BIN)
-src_files := $(wildcard src/*.c)
+src_files := $(wildcard src/*.c src/*/*.c )
 
 game.gb: _build
 	$(lcc) $(src_files) -o _build/game.gb
