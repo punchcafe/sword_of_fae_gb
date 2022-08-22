@@ -46,8 +46,23 @@ void swordsman_state_updater(struct SwordsmanState * state)
     };
 }
 
+unsigned short position = 0;
+unsigned int time_buffer = 0;
+
+void ai_state_updater(struct SwordsmanState * state){
+    time_buffer++;
+    if(time_buffer > 5)
+    {
+        position = (position + 1) % 9;
+        state->pose = position;
+        time_buffer = 0;
+    }
+}
+
 struct SwordsmanState player_swordsman_state = {SP_CENTER};
+struct SwordsmanState ai_swordsman_state = {SP_CENTER};
 struct RenderSwordsman render_swordsman_state = {SP_CENTER};
+struct RenderSwordsman ai_render_swordsman_state = {SP_CENTER};
 
 int main()
 {
@@ -57,7 +72,9 @@ int main()
     while(0x01)
     {
         swordsman_state_updater(&player_swordsman_state);
+        ai_state_updater(&ai_swordsman_state);
         render_swordsman(&render_swordsman_state, &player_swordsman_state, 5, 5);
+        render_swordsman(&ai_render_swordsman_state, &ai_swordsman_state, 10, 5);
         delay(100); 
     }
 }
