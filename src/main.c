@@ -54,5 +54,23 @@ move-guard
 block
 cut-through
 stab
+
+Separete all things into two categories:
+callbacks and processes.
+Callbacks are a perfectly valid way to update state
+use callbacks when needed, and processes can assume reliance on callbacks
+
+example module:
+
+void player_state_on_command(Command ..., required_params )
+
+void duelist_state_on_attack_event(... event (including target))
+... sets player state as attacking
+... awaits an on_attack_response callback to inform it that it's attack is finished
+AttackCommand -> intention to attack
+AttackEvent -> attack event which must be responded to
+
+// CONSIDER animation lock.
+// Consider a global set of locks which a process (animation etc) can claim until finishing
 */
 #endif
