@@ -32,4 +32,27 @@ int main()
         delay(100); 
     }
 }
+/*
+
+notes
+
+void update_player_command(proc_state, player_state, current_command, observers);
+// Looks at player state, if and converts to top-level commands like:
+cut-through
+none
+move-guard
+{block, :left}
+The abstraction at this stage is clearly:
+take user inputs, and convert them into abstracted 'commands'
+// or alternatively have observer 
+void update_player_state(player_state, command_state);
+
+
+listing commands:
+none
+move-guard
+block
+cut-through
+stab
+*/
 #endif
